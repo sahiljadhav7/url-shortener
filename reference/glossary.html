@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shortener Glossary</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+<header class="lesson">
+  <p class="kicker">Reference</p>
+  <h1>Glossary</h1>
+  <p class="subtitle">The canonical words for this project. Only terms you've already reasoned through go in here.</p>
+</header>
+
+<h2>Design</h2>
+<dl class="glossary">
+  <dt>Hot path</dt>
+  <dd>The code path that handles most of the traffic. Here, the redirect, at about 100 reads per write.</dd>
+  <dd class="avoid">Avoid: fast path, main route</dd>
+
+  <dt>Base62</dt>
+  <dd>The alphabet <code>a–z A–Z 0–9</code>. Every character passes through a URL unchanged, unlike Base64's <code>+</code> and <code>/</code>.</dd>
+
+  <dt>Atomic counter</dt>
+  <dd>A number incremented <em>by the database</em> in one operation (<code>UpdateItem</code> with <code>ADD</code>), so concurrent callers never get the same value.</dd>
+  <dd class="avoid">Avoid: auto-increment, global variable</dd>
+
+  <dt>Scrambler (bijection)</dt>
+  <dd>A reversible one-to-one mapping from counter value to code. It looks random but can never collide.</dd>
+  <dd class="avoid">Avoid: hash (hashes can collide)</dd>
+</dl>
+
+<h2>AWS</h2>
+<dl class="glossary">
+  <dt>Stateless function</dt>
+  <dd>A Lambda keeps nothing reliable in memory between calls. All state lives in a database.</dd>
+
+  <dt>Partition key (PK)</dt>
+  <dd>The attribute DynamoDB uses to find an item directly. <code>code</code> for Links, <code>id</code> for Counter.</dd>
+  <dd class="avoid">Avoid: primary ID, index</dd>
+
+  <dt>SAM template</dt>
+  <dd><code>template.yaml</code>: one file that declares every function, table and route. Deployed as one stack.</dd>
+  <dd class="avoid">Avoid: config file</dd>
+</dl>
+
+<h2>HTTP</h2>
+<dl class="glossary">
+  <dt>302 Found</dt>
+  <dd>A temporary redirect to the URL in the <code>Location</code> header. Not cached by default, so every click reaches the server.</dd>
+
+  <dt>410 Gone</dt>
+  <dd>The resource existed and has been removed for good. Used for expired links.</dd>
+</dl>
+
+<nav class="links"><a href="hld-at-a-glance.html">HLD at a glance</a> · <a href="../lessons/0001-reading-the-hld.html">Lesson 1</a></nav>
+</main>
+</body>
+</html>
