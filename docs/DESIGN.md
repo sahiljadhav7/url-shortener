@@ -1,4 +1,4 @@
-# Serverless URL Shortener: Design & Tech Stack
+  # Serverless URL Shortener: Design & Tech Stack
 
 A serverless URL shortener on AWS, built phase by phase as a learning project. Every decision below was reasoned through (not just picked), and each phase teaches one system design topic.
 

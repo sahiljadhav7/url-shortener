@@ -1,5 +1,9 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
+Parameters:
+  HASHSALT:
+    Type: String
+    NoEcho: true
 Resources:
   LinksTable:
     Type: AWS::DynamoDB::Table
@@ -37,6 +41,8 @@ Resources:
         Variables:
           LINKS_TABLE_NAME: !Ref LinksTable
           COUNTER_TABLE_NAME: !Ref CounterTable
+          HASH_SALT: !Ref HASHSALT
+
       Policies:
         - DynamoDBWritePolicy:
             TableName: !Ref LinksTable
