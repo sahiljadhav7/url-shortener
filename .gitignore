@@ -13,3 +13,6 @@ node_modules/
 
 # Personal Claude Code settings
 .claude/settings.local.json
+
+# Session handoff context for Claude (not project docs)
+HANDOFF.md
