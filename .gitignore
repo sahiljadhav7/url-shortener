@@ -16,3 +16,8 @@ node_modules/
 
 # Session handoff context for Claude (not project docs)
 HANDOFF.md
+
+
+#learning files
+reference/
+lessons/

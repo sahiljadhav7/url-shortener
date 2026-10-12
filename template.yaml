@@ -48,7 +48,7 @@ Resources:
             TableName: !Ref LinksTable
         - DynamoDBWritePolicy:
             TableName: !Ref CounterTable
-  RedirectFunction:
+  RedirectHandler:
     Type: AWS::Serverless::Function
     Properties:
       Events:
@@ -57,7 +57,7 @@ Resources:
           Properties:
             Path: /{code}
             Method: get
-      Handler: app.redirectHandler
+      Handler: app.RedirectHandler
       Runtime: nodejs24.x
       CodeUri: src/redirect/
       Environment:
